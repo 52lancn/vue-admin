@@ -2,7 +2,7 @@
 
 仅个人学习实践项目，请勿用于生产环境。
 
-基于 [Arco Design Vue](https://arco.design/) 组件库的开箱即用的中后台前端解决方案。
+基于 [Arco Design Vue](https://arco.design/)  组件库的开箱即用的中后台前端解决方案。
 
 ![首页](public/home.png)
 
