@@ -1,33 +1,17 @@
 # vue-admin
 
-This template should help get you started developing with Vue 3 in Vite.
+这个项目是个人演示作品，所有资源来源于网络，请勿用于生产环境.
 
-## Recommended IDE Setup
+基于 [Arco Design](https://arco.design/) Vue 组件库的开箱即用的中后台前端解决方案。
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+![首页](public/home.png)
 
-## Type Support for `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## 使用
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
+```shell
+$ git clone https://github.com/52lancn/vue-admin.git
+$ cd vue-admin
+$ pnpm i
+$ pnpm run dev
 ```
