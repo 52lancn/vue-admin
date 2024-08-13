@@ -1,0 +1,183 @@
+<template>
+    <div class="login-form-wrapper">
+      <div class="login-form-title">欢迎使用！</div>
+      <div class="login-form-error-msg">{{ errorMessage }}</div>
+        <a-form
+            :model="userInfo"
+            class="login-form"
+            layout="vertical"
+            @submit="handleSubmit"
+        >
+            <a-form-item
+                field="username"
+                :rules="[{ required: true, message: '用户名不能为空' }]"
+                :validate-trigger="['change', 'blur']"
+                hide-label
+            >
+                <a-input
+                    v-model="userInfo.username"
+                    placeholder="用户名:admin"
+                    allow-clear
+                >
+                    <template #prefix>
+                        <icon-user />
+                    </template>
+                </a-input>
+            </a-form-item>
+            <a-form-item
+                field="password"
+                :rules="[{ required: true, message: '密码不能为空'}]"
+                :validate-trigger="['change', 'blur']"
+                hide-label
+            >
+                <a-input-password
+                    v-model="userInfo.password"
+                    placeholder="密码:admin"
+                    allow-clear
+                >
+                    <template #prefix>
+                        <icon-lock />
+                    </template>
+                </a-input-password>
+            </a-form-item>
+            <a-space :size="16" direction="vertical">
+              <div class="login-form-password-actions">
+                <a-checkbox
+                  checked="rememberPassword"
+                  :model-value="loginConfig.rememberPassword"
+                  @change="setRememberPassword as any"
+                >
+                  记住密码
+                </a-checkbox>
+                <a-link className="login-form-forget-password">忘记密码</a-link>
+              </div>
+              <a-button type="primary" html-type="submit" size="large" long :loading="loading">
+                登录
+              </a-button>
+              <a-button type="text" long class="login-form-register-btn">
+                注册账号
+              </a-button>
+            </a-space>
+        </a-form>
+    </div>
+ </template>
+ 
+ <script lang="ts" setup>
+  import { ref, reactive } from 'vue';
+  import { useRouter } from 'vue-router';
+  import { useStorage } from '@vueuse/core';
+  import { Message } from '@arco-design/web-vue';
+  import type { ValidatedError } from '@arco-design/web-vue/es/form/interface';
+  import useLoading from '@/hooks/loading';
+  import { useUserStore } from '@/store';
+  import type { LoginData } from '@/api/user';
+  const router = useRouter();
+  const { loading, setLoading } = useLoading();
+  const userStore = useUserStore();
+  const errorMessage = ref('');
+  const loginConfig = useStorage('login-config', {
+    rememberPassword: true,
+    username: 'admin', // 演示默认值
+    password: '123456', // demo default value
+  });
+  const userInfo = reactive({
+    username: loginConfig.value.username,
+    password: loginConfig.value.password,
+  });
+  const handleSubmit = async ({
+    errors,
+    values,
+  }: {
+    errors: Record<string, ValidatedError> | undefined;
+    values: Record<string, any>;
+  }) => {
+    if (loading.value) return;
+    if (!errors) {
+      setLoading(true);
+      try {
+        errorMessage.value = '';
+        await userStore.login(values as LoginData);
+        userStore.info();//临时使用
+        const { redirect, ...othersQuery } = router.currentRoute.value.query;
+        router.push({
+          name: (redirect as string) || 'Workplace',
+          query: {
+            ...othersQuery,
+          },
+        });
+        Message.success('欢迎使用');
+        const { rememberPassword } = loginConfig.value;
+        const { username, password } = values;
+        // 实际生产环境需要进行加密存储。
+        // The actual production environment requires encrypted storage.
+        loginConfig.value.username = rememberPassword? username : '';
+        loginConfig.value.password = rememberPassword? password : '';
+      } catch (err) {
+        //console.error(err);
+        errorMessage.value = (err as Error).message;
+      } finally {
+        setLoading(false);
+      }
+    }
+  }
+  const setRememberPassword = (value: boolean) => {
+    loginConfig.value.rememberPassword = value;
+  };
+ </script>
+<style> 
+  .login-form-password-actions .arco-checkbox-label{
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+</style>
+<style lang="less" scoped>
+  .login-form {
+    &-wrapper {
+      width: 350px;
+      border-width: 0px;
+      background: rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(2px);
+      border-radius: 8px;
+      border: none;
+      box-shadow: none;
+      padding: 15px;
+    }
+
+    &-title {
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 32px;
+    }
+
+    &-sub-title {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &-error-msg {
+      height: 32px;
+      color: rgb(var(--red-6));
+      line-height: 32px;
+    }
+
+    &-password-actions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    &-register-btn {
+      color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    &-register-btn:hover {
+      color: var(--color-text-1) !important;
+      background-color: var(--color-fill-1) !important;
+    }
+
+    &-forget-password {
+      color: rgba(255, 255, 255, 0.9) !important;
+      cursor: pointer;
+    }
+  }
+</style>
