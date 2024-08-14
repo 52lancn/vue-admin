@@ -5,17 +5,13 @@
     </div>
     <div class="right-side">
       <a-space class="right-side-space">
-        <a-tooltip content="搜索">
-          <a-button 
-          class="nav-btn" 
-          type="outline"
-          :shape="'circle'"
-          >
+        <a-tooltip content="https://github.com/52lancn/vue-admin">
+          <a-link class="nav-btn" target="_blank" href="https://github.com/52lancn/vue-admin">
             <template #icon>
-              <icon-search />
+              <icon-github />
             </template>
-          </a-button>
-        </a-tooltip>
+          </a-link>
+        </a-tooltip>    
         <a-tooltip content="语言">
           <a-button 
           class="nav-btn" 
@@ -43,25 +39,6 @@
             </a-doption>
           </template>
         </a-dropdown>
-        <a-tooltip
-          :content="
-            theme === 'light'
-              ? '点击切换为暗黑模式'
-              : '点击切换为亮色模式'
-          "
-        >
-          <a-button
-            class="nav-btn"
-            type="outline"
-            :shape="'circle'"
-            @click="handleToggleTheme"
-          >
-            <template #icon>
-              <icon-moon-fill v-if="theme === 'dark'" />
-              <icon-sun-fill v-else />
-            </template>
-          </a-button>
-        </a-tooltip>
         <a-tooltip content="消息通知">
           <div class="message-box-trigger">
             <a-badge :count="9" dot>
@@ -170,6 +147,9 @@
   ];
   const currentLocale = 'zh-CN';
   const triggerBtn = ref();
+  const handleGoToUrl = (url:string) => {
+      window.location.href = url;
+  }
   const setDropDownVisible = () => {
     const event = new MouseEvent('click', {
       view: window,
@@ -178,10 +158,10 @@
     });
     triggerBtn.value.dispatchEvent(event);
   };
-  const theme =  ref('dark');
-  const handleToggleTheme = () => {
-    theme.value =  theme.value == 'dark'? 'light' : 'dark';
-  };
+  // const theme =  ref('dark');
+  // const handleToggleTheme = () => {
+  //   theme.value =  theme.value == 'dark'? 'light' : 'dark';
+  // };
   const refBtn = ref();
   const setPopoverVisible = () => {
     const event = new MouseEvent('click', {
@@ -224,24 +204,43 @@
   }
 
  .right-side{
-  padding:0 20px;
-  &-space{
-    height: 100%;
-  }
+    padding:0 20px;
+    &-space{
+      height: 100%;
+    }
 
-  .nav-btn {
+    .nav-btn {
+      border-color: rgb(var(--gray-2));
+      color: rgb(var(--gray-8));
+      font-size: 16px;
+    }
+    .trigger-btn,
+    .ref-btn {
+      position: absolute;
+      bottom: 14px;
+    }
+    .trigger-btn {
+      margin-left: 14px;
+    }
+ }
+
+ .arco-link.nav-btn{
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    text-align: center;
+    border-radius: var(--border-radius-circle);
+
+    background-color: transparent;
+    border: 1px solid rgb(var(--primary-6));
+
     border-color: rgb(var(--gray-2));
     color: rgb(var(--gray-8));
     font-size: 16px;
-  }
-  .trigger-btn,
-  .ref-btn {
-    position: absolute;
-    bottom: 14px;
-  }
-  .trigger-btn {
-    margin-left: 14px;
-  }
  }
+ :deep(.arco-link-icon) {
+    margin-right: 0px;
+    font-size: 16px;
+  }
 </style>
 
