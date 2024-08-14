@@ -1,8 +1,8 @@
 # vue-admin
 
-这个项目是个人演示作品，所有资源来源于网络，请勿用于生产环境.
+仅个人学习实践项目，请勿用于生产。
 
-基于 [Arco Design](https://arco.design/) Vue 组件库的开箱即用的中后台前端解决方案。
+基于 [Arco Design Vue](https://arco.design/)  组件库的开箱即用的中后台前端解决方案。
 
 ![首页](public/home.png)
 
