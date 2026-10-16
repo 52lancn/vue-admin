@@ -20,4 +20,4 @@ $ pnpm run dev
 
 推送到 `main` 后，GitHub Actions 会自动构建并发布到 [https://52lancn.github.io/vue-admin/](https://52lancn.github.io/vue-admin/)。也可以在 Actions 页面手动运行 `Deploy to GitHub Pages` 工作流。
 
-首次发布前，请在仓库的 **Settings > Pages > Build and deployment** 中将 **Source** 设置为 **GitHub Actions**。
+首次发布前，请在仓库的 **Settings > Pages > Build and deployment** 中将 **Source** 设置为 **GitHub Actions**。如果工作流报 `Get Pages site failed: Not Found`，通常是 Pages 尚未启用；完成此设置后重新运行工作流即可。自动启用需要额外的 PAT 或 GitHub App 权限，本项目不要求配置这类凭据。
