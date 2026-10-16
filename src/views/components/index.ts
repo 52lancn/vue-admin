@@ -1,13 +1,22 @@
 import type { App } from 'vue';
 import { use } from 'echarts/core';
 import { CanvasRenderer } from 'echarts/renderers';
-import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts';
+import {
+  BarChart,
+  LineChart,
+  PieChart,
+  RadarChart,
+  GaugeChart,
+  FunnelChart,
+} from 'echarts/charts';
 import {
   GridComponent,
   TooltipComponent,
   LegendComponent,
   DataZoomComponent,
   GraphicComponent,
+  TitleComponent,
+  ToolboxComponent,
 } from 'echarts/components';
 import Chart from './chart/index.vue';
 import Breadcrumb from './breadcrumb/index.vue';
@@ -20,11 +29,15 @@ use([
   LineChart,
   PieChart,
   RadarChart,
+  GaugeChart,
+  FunnelChart,
   GridComponent,
   TooltipComponent,
   LegendComponent,
   DataZoomComponent,
   GraphicComponent,
+  TitleComponent,
+  ToolboxComponent,
 ]);
 
 export default {

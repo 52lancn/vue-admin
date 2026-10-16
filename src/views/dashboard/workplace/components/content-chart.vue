@@ -18,7 +18,7 @@
 
 <script lang="ts" setup>
   import { ref } from 'vue';
-  import { graphic } from 'echarts';
+  import { graphic } from 'echarts/core';
   import useLoading from '@/hooks/loading';
   import { queryContentData, type ContentDataRecord } from '@/api/dashboard';
   import useChartOption from '@/hooks/chart-option';
@@ -60,7 +60,7 @@
         boundaryGap: false,
         axisLabel: {
           color: '#4E5969',
-          formatter(value: number, idx: number) {
+          formatter(value: string, idx: number) {
             if (idx === 0) return '';
             if (idx === xAxis.value.length - 1) return '';
             return `${value}`;

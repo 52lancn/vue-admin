@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['异常页', '404']" />
+    <Breadcrumb :items="['页面示例', '404']" />
     <div class="content">
       <a-result
         class="result"

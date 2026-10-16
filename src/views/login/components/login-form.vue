@@ -142,6 +142,12 @@
       padding: 15px;
     }
 
+    &-logo {
+      height: 40px;
+      width: auto;
+      margin-bottom: 16px;
+    }
+
     &-title {
       color: rgba(255, 255, 255, 0.9);
       font-weight: 500;

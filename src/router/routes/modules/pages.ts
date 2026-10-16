@@ -1,17 +1,37 @@
 import { DEFAULT_LAYOUT } from '../base';
 import type { AppRouteRecordRaw } from '../types';
 
-const EXCEPTION: AppRouteRecordRaw = {
-  path: '/exception',
-  name: 'exception',
+const PAGES: AppRouteRecordRaw = {
+  path: '/pages',
+  name: 'pages',
   component: DEFAULT_LAYOUT,
   meta: {
-    activeMenu: '异常页',
+    activeMenu: '页面示例',
     requiresAuth: true,
-    icon: 'icon-exclamation-circle',
-    order: 6,
+    icon: 'icon-apps',
+    order: 2,
   },
   children: [
+    {
+      path: 'success',
+      name: 'Success',
+      component: () => import('@/views/result/success/index.vue'),
+      meta: {
+        activeMenu: '成功页',
+        requiresAuth: true,
+        roles: ['admin'],
+      },
+    },
+    {
+      path: 'error',
+      name: 'Error',
+      component: () => import('@/views/result/error/index.vue'),
+      meta: {
+        activeMenu: '错误页',
+        requiresAuth: true,
+        roles: ['admin'],
+      },
+    },
     {
       path: '403',
       name: '403',
@@ -45,4 +65,4 @@ const EXCEPTION: AppRouteRecordRaw = {
   ],
 };
 
-export default EXCEPTION;
+export default PAGES;

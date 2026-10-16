@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['结果页', '失败页']" />
+    <Breadcrumb :items="['页面示例', '错误页']" />
     <div class="wrapper">
       <a-result
         class="result"

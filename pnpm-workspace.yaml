@@ -1,0 +1,7 @@
+nodeLinker: hoisted
+allowBuilds:
+  esbuild: true
+  vue-demi: true
+  vue-echarts: true
+minimumReleaseAgeExclude:
+  - pinia@4.1.0

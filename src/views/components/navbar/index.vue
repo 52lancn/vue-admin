@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="left-side">
-      <h1 class="logo">52lancn.</h1>
+      <img class="logo" src="@/assets/images/logo.png" alt="52lancn" />
     </div>
     <div class="right-side">
       <a-space class="right-side-space">
@@ -190,16 +190,12 @@
     flex-basis: 180px;
     flex-shrink: 0;
     background-color: #1f2328;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     .logo{
-      white-space: nowrap;
-      color: #07bb8a; /* 文字颜色 */
-      text-shadow: 
-        0 0 1px #07bb8a, /* 光滑 */
-        0 0 8px #07bb8a, /* 光滑 */
-        0 0 58px #07bb8a, /* 光滑 */
-        0 0 88px #000; /* 边缘阴影 */
-      font-style: italic;
+      height: 30px;
+      width: auto;
     }
   }
 

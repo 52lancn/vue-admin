@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['列表页', '卡片列表']" />
+    <Breadcrumb :items="['功能示例', '卡片列表']" />
     <a-row :gutter="20" align="stretch">
       <a-col :span="24">
         <a-card class="general-card" title="卡片列表">

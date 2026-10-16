@@ -68,17 +68,17 @@
       };
       listenerRouteChange((newRoute) => {
         const { requiresAuth, hideInMenu } = newRoute.meta;
-        if (requiresAuth && (!hideInMenu || newRoute.name == 'Workplace')) {
+        if (requiresAuth && (!hideInMenu || newRoute.name === 'Workplace')) {
+          if (newRoute.name === 'Workplace') {
+            selectedKey.value = ['Workplace'];
+            return;
+          }
           const menuOpenKeys = findMenuOpenKeys(newRoute.name as string);
           const keySet = new Set([...menuOpenKeys, ...openKeys.value]);
           openKeys.value = [...keySet];
-          selectedKey.value = [menuOpenKeys[menuOpenKeys.length - 1]];
-          if(selectedKey.value.length)
-          {
-            selectedKey.value=['Workplace'];
-          }
-          console.log("listenerRouteChange",newRoute.name);
-          console.log("selectedKey",selectedKey.value);
+          selectedKey.value = [
+            menuOpenKeys[menuOpenKeys.length - 1] || (newRoute.name as string),
+          ];
         }
       }, true);
       // const setCollapse = (val: boolean) => {
