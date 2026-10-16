@@ -8,6 +8,7 @@ import { vitePluginForArco } from '@arco-plugins/vite-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.VITE_BASE_PATH || '/',
   plugins: [
     vue(),
     vueJsx(),
