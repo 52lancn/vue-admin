@@ -233,7 +233,32 @@ const userStore = useUserStore()
 
 ## 🌐 部署
 
-### GitHub Pages 自动部署
+### 1. Vercel 部署（推荐）
+
+项目已配置 Vercel 部署文件，支持一键部署到 Vercel 平台：
+
+#### 方法一：通过 Vercel 网页界面（最简单）
+1. 将项目推送到 GitHub/GitLab
+2. 访问 https://vercel.com
+3. 导入你的仓库并点击部署
+
+#### 方法二：通过 Vercel CLI
+```bash
+# 安装 CLI
+npm install -g vercel
+
+# 登录并部署
+cd 项目目录
+vercel login
+vercel --prod
+```
+
+配置文件中已包含：
+- `vercel.json` - Vercel 部署配置（SPA 路由重写）
+- `.vercelignore` - 忽略开发不必要文件
+- `.github/workflows/deploy-vercel.yml` - GitHub Actions 工作流
+
+### 2. GitHub Pages 自动部署
 
 项目已配置 GitHub Actions 工作流，推送到 `main` 分支后会自动构建并部署到 GitHub Pages：
 
@@ -247,9 +272,7 @@ git push origin main
 2. Build and deployment > Source 选择 **GitHub Actions**
 3. 如果工作流报 `Get Pages site failed: Not Found`，通常是 Pages 尚未启用，完成设置后重新运行工作流即可
 
-访问地址：https://52lancn.github.io/vue-admin/
-
-### 手动构建部署
+### 3. 手动构建部署
 
 ```bash
 # 构建生产版本
@@ -258,6 +281,14 @@ pnpm build
 # 生成 dist 目录
 # 将 dist 目录内容部署到您的服务器
 ```
+
+### 部署文件说明
+
+- `vercel.json` - Vercel 配置文件
+- `.vercelignore` - 部署忽略文件
+- `DEPLOY.md` - 部署指南
+- `DEPLOY-GUIDE.md` - 详细部署步骤
+- `vite.config.ts` - 已配置 `base` 路径支持部署
 
 ## 🤝 贡献指南
 
