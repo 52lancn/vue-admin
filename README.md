@@ -290,6 +290,15 @@ pnpm build
 - `DEPLOY-GUIDE.md` - 详细部署步骤
 - `vite.config.ts` - 已配置 `base` 路径支持部署
 
+## 🌐 在线演示
+
+- **演示地址**：http://vue_admin.52lan.cn
+- **登录账号**：
+  - 用户名：`admin`
+  - 密码：`123456`
+
+> 演示站点为公开展示用途，登录后即为后台管理界面；生产环境请务必修改默认账号密码。
+
 ## 🤝 贡献指南
 
 欢迎提交 Issue 和 Pull Request！
